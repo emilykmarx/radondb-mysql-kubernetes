@@ -5,21 +5,21 @@ metadata:
 spec:
   replicas: 3
   mysqlVersion: "5.7"
-  
+
   # the backupSecretName specify the secret file name which store S3 information,
   # if you want S3 backup or restore, please create backup_secret.yaml, uncomment below and fill secret name:
-  # backupSecretName: 
-  
+  # backupSecretName:
+
   # if you want create mysqlcluster from S3, uncomment and fill the directory in S3 bucket below:
-  # restoreFrom: 
-  
+  # restoreFrom:
+
   mysqlOpts:
     rootPassword: "RadonDB@123"
     rootHost: localhost
     user: radondb_usr
     password: RadonDB@123
     database: radondb
-    initTokuDB: true
+    initTokuDB: false
 
     # A simple map between string and string.
     # Such as:
@@ -62,7 +62,7 @@ spec:
 
   podPolicy:
     imagePullPolicy: IfNotPresent
-    sidecarImage: radondb/mysql-sidecar:latest
+    sidecarImage: radondb/mysql-sidecar:v2.1.2
     busyboxImage: busybox:1.32
 
     slowLogTail: false
